@@ -33,5 +33,5 @@ decoder_client_networked : client.o $(TBENCH_NETWORKED_CLIENT_OBJS)
         export PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) && \
         $(CXX) $^ -o $@ `pkg-config --libs pocketsphinx sphinxbase` $(LDFLAGS)
 clean:
-        rm *.o
-        rm $(BINS)
+		rm *.o
+		rm $(BINS)
