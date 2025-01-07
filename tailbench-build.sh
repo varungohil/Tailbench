@@ -58,9 +58,10 @@ sudo make -j$(nproc) && sudo make install
 cd ..	
 
 echo -e "\033[92mBuilding xapian\033[0m"
-cd ./xapian
+
+cd ${TAILBENCHDIR}/xapian
 sudo ldconfig
-./build.sh
+bash ./build.sh
 cd ..
 
 cd ~
@@ -78,6 +79,6 @@ cd ./pocketsphinx-5prealpha/
 sudo ./configure && sudo make -j$(nproc) && sudo make install
 
 echo -e "\033[92mBuilding sphinx\033[0m"
-cd ./sphinx
-./build.sh
+cd ${TAILBENCHDIR}/sphinx
+bash ./build.sh
 cd ..
