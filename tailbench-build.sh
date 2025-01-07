@@ -38,11 +38,10 @@ echo -e "\033[92mBuilding silo\033[0m"
 cd ./silo
 
 cd ./masstree
-if [[ ! -f config.h ]]; then
-	sudo ./configure
-fi
+sudo ./configure
+
 cd ..
-./build.sh
+bash ./build.sh
 cd ..
 
 
@@ -74,8 +73,8 @@ sudo ./autogen.sh && sudo ./configure && sudo make -j$(nproc) && sudo make insta
 
 cd ..
 cd ./pocketsphinx-5prealpha/
-# sudo apt-get install automake
-# sudo ln -sf /usr/bin/aclocal /usr/bin/aclocal-1.13
+sudo apt-get install automake
+sudo ln -sf /usr/bin/aclocal /usr/bin/aclocal-1.13
 sudo ./configure && sudo make -j$(nproc) && sudo make install
 
 echo -e "\033[92mBuilding sphinx\033[0m"
