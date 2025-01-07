@@ -75,6 +75,7 @@ cd ..
 cd ./pocketsphinx-5prealpha/
 sudo apt-get install automake
 sudo ln -sf /usr/bin/aclocal /usr/bin/aclocal-1.13
+automake --add-missing --copy
 sudo ./configure && sudo make -j$(nproc) && sudo make install
 
 echo -e "\033[92mBuilding sphinx\033[0m"
