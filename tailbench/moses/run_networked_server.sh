@@ -19,7 +19,7 @@ TBENCH_MAXREQS=${MAXREQS} \
     TBENCH_WARMUPREQS=${WARMUPREQS} \
     TBENCH_SERVER=10.0.1.1 \
     TBENCH_SERVER_PORT=12345 \
-    TBENCH_NCLIENTS=20 \
+    TBENCH_NCLIENTS=1 \
     ${BINDIR}/moses_server_networked -config ./moses.ini \
     -input-file ${DATA_ROOT}/moses/testTerms \
     -threads ${THREADS} -num-tasks 1000000 -verbose 0

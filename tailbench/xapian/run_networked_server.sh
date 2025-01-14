@@ -15,6 +15,6 @@ TBENCH_MAXREQS=${MAXREQS} \
     TBENCH_WARMUPREQS=${WARMUPREQS} \
     TBENCH_SERVER=10.0.1.1 \
     TBENCH_SERVER_PORT=12345 \
-    TBENCH_NCLIENTS=20 \
+    TBENCH_NCLIENTS=1 \
     ./xapian_networked_server -n ${NSERVERS} -d ${DATA_ROOT}/xapian/wiki \
     -r 1000000000 
