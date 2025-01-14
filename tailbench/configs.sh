@@ -7,3 +7,5 @@ JDK_PATH=/usr/lib/jvm/java-8-openjdk-amd64
 
 # This location is used by applications to store scratch data during execution.
 SCRATCH_DIR=/mydata/local/scratch
+
+TAILBENCH_ROOTDIR=/users/varuncg/Tailbench/tailbench
