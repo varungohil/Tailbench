@@ -313,6 +313,7 @@ void tBenchServerInit(int nthreads) {
     int serverport = getOpt<int>("TBENCH_SERVER_PORT", 8080);
     int nclients = getOpt<int>("TBENCH_NCLIENTS", 1);
     server = new NetworkedServer(nthreads, serverurl, serverport, nclients);
+    std::cout << "[SERVER] Done initializing server" << std::endl; 
     
 }
 

@@ -61,8 +61,10 @@ int main(int argc, char* argv[]) {
 
     Server::init(numReqsToProcess, numServers);
     Server** servers = new Server* [numServers];
-    for (unsigned i = 0; i < numServers; i++)
+    for (unsigned i = 0; i < numServers; i++) {
         servers[i] = new Server(i, dbPath);
+    }
+    std::cout << "[SERVER] made server objects" << std::endl; 
 
     pthread_t* threads = NULL;
     if (numServers > 1) {
