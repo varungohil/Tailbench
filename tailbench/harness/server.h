@@ -50,7 +50,7 @@ class Server {
         }
 
         virtual size_t recvReq(int id, void** data) = 0;
-        virtual void sendResp(int id, const void* data, size_t size) = 0;
+        virtual void sendResp(int id, const void* data, size_t size, int64_t feature) = 0;
 };
 
 class IntegratedServer : public Server, public Client {
