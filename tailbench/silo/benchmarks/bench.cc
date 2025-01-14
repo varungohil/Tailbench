@@ -139,7 +139,7 @@ retry:
         latency_numer_us += t.lap();
         backoff_shifts >>= 1;
         resp.success = true;
-        tBenchSendResp(&resp, sizeof(resp));
+        tBenchSendResp(&resp, sizeof(resp), req->type);
     } else {
         ++ntxn_aborts;
         if (retry_aborted_transaction && running) {

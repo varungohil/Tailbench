@@ -1609,7 +1609,7 @@ void kvtest_mycsba(S &server)
 
         Response resp = { SUCCESS };
 
-        tBenchSendResp(reinterpret_cast<void*>(&resp), sizeof(resp));
+        tBenchSendResp(reinterpret_cast<void*>(&resp), sizeof(resp), 0);
 
         // lat_startRequest();
         // for (g = 0; g < n; ++g) {

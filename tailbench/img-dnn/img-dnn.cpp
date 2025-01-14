@@ -145,7 +145,7 @@ class Worker {
                 Mat result = resultProdict(single_testX, hiddenLayers, smr);
 
                 res.res = result.at<double>(0, 0);
-                tBenchSendResp(reinterpret_cast<const void*>(&res), sizeof(res));
+                tBenchSendResp(reinterpret_cast<const void*>(&res), sizeof(res), 0);
             }
         }
 
