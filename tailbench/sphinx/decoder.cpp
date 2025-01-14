@@ -28,9 +28,9 @@ void doAsr() {
     int32 score;
 
     config = cmd_ln_init(NULL, ps_args(), TRUE,
-                 "-hmm", MODELDIR"/en-us/en-us",
-                 "-lm", MODELDIR"/en-us/en-us.lm.bin",
-                 "-dict", MODELDIR"/en-us/cmudict-en-us.dict",
+                 "-hmm", "/users/varuncg/Tailbench/tailbench/sphinx/sphinx-install/share/pocketsphinx/model/en-us/en-us",
+                 "-lm", "/users/varuncg/Tailbench/tailbench/sphinx/sphinx-install/share/pocketsphinx/model/en-us/en-us.lm.bin",
+                 "-dict", "/users/varuncg/Tailbench/tailbench/sphinx/sphinx-install/share/pocketsphinx/model/en-us/cmudict-en-us.dict",
                  NULL);
     if (config == NULL) throw AsrException("Could not init config");
     ps = ps_init(config);
@@ -59,7 +59,7 @@ void doAsr() {
         hyp = ps_get_hyp(ps, &score);
         if (hyp == NULL) AsrException("Could not get hypothesis");
 
-        tBenchSendResp(reinterpret_cast<const void*>(hyp), strlen(hyp));
+        tBenchSendResp(reinterpret_cast<const void*>(hyp), strlen(hyp), len);
     }
 
     ps_free(ps);

@@ -56,12 +56,13 @@ size_t IntegratedServer::recvReq(int id, void** data) {
     return req->len;
 };
 
-void IntegratedServer::sendResp(int id, const void* data, size_t len) {
+void IntegratedServer::sendResp(int id, const void* data, size_t len, int64_t feature) {
     Response* resp = new Response();
     
     resp->type = RESPONSE;
     resp->id = reqInfo[id].id;
     resp->len = len;
+    resp->feature = feature;
     memcpy(reinterpret_cast<void*>(&resp->data), data, len);
 
     uint64_t curNs = getCurNs();
@@ -118,7 +119,7 @@ size_t tBenchRecvReq(void** data) {
     return server->recvReq(tid, data);
 }
 
-void tBenchSendResp(const void* data, size_t size) {
-    return server->sendResp(tid, data, size);
+void tBenchSendResp(const void* data, size_t size, int64_t feature) {
+    return server->sendResp(tid, data, size, feature);
 }
 

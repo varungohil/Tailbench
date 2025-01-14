@@ -31,7 +31,7 @@ void tBenchServerFinish();
 
 size_t tBenchRecvReq(void** data);
 
-void tBenchSendResp(const void* data, size_t size);
+void tBenchSendResp(const void* data, size_t size, int64_t feature);
 
 #ifdef __cplusplus 
 }

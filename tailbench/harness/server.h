@@ -58,7 +58,7 @@ class IntegratedServer : public Server, public Client {
         IntegratedServer(int nthreads);
 
         size_t recvReq(int id, void** data);
-        void sendResp(int id, const void* data, size_t size);
+        void sendResp(int id, const void* data, size_t size, int64_t feature);
 };
 
 class NetworkedServer : public Server {
@@ -88,7 +88,7 @@ class NetworkedServer : public Server {
         ~NetworkedServer();
 
         size_t recvReq(int id, void** data);
-        void sendResp(int id, const void* data, size_t size);
+        void sendResp(int id, const void* data, size_t size, int64_t feature);
         void finish();
 };
 

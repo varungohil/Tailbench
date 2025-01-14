@@ -14,7 +14,7 @@ class Lat(object):
     def __init__(self, fileName):
         f = open(fileName, 'rb')
         a = np.fromfile(f, dtype=np.uint64)
-        self.reqTimes = a.reshape((int(a.shape[0]/3), 3))
+        self.reqTimes = a.reshape((int(a.shape[0]/4), 4))
         f.close()
 
     def parseQueueTimes(self):
@@ -25,6 +25,9 @@ class Lat(object):
 
     def parseSojournTimes(self):
         return self.reqTimes[:, 2]
+    
+    def parseFeatures(self):
+        return self.reqTimes[:, 3]
 
 def draw_pdf(values, nbins):
     clear()

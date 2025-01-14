@@ -120,6 +120,7 @@ public:
     // m_linenumber here seems to require some pretty major surgery
     char* sentencePtr;
     size_t len = tBenchRecvReq(reinterpret_cast<void**>(&sentencePtr));
+    int64_t wordCount = countWords(sentencePtr);
 
     Timer translationTime;
     translationTime.start();
@@ -411,7 +412,7 @@ public:
     VERBOSE(1, "Line " << m_lineNumber << ": Translation took " << translationTime << " seconds total" << endl);
 
     std::string translation = "Hello World";
-    tBenchSendResp(reinterpret_cast<const void*>(translation.c_str()), translation.size() + 1);
+    tBenchSendResp(reinterpret_cast<const void*>(translation.c_str()), translation.size() + 1, wordCount);
   }
 
   ~TranslationTask() {
@@ -539,6 +540,23 @@ void OutputFeatureWeightsForHypergraph(std::ostream &outputSearchGraphStream)
     featureIndex = OutputFeatureWeightsForHypergraph(featureIndex, gds[i], outputSearchGraphStream);
   }
 
+}
+
+size_t countWords(const char* sentencePtr) {
+    if (sentencePtr == nullptr) {
+        return 0; // Handle null pointer case
+    }
+
+    std::string sentence(sentencePtr); // Convert char* to std::string
+    std::istringstream stream(sentence);
+    std::string word;
+    size_t count = 0;
+
+    while (stream >> word) {
+        count++;
+    }
+
+    return count;
 }
 
 } //namespace
