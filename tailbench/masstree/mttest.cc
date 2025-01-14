@@ -72,7 +72,7 @@ static const char *gid = NULL;
 
 // all default to the number of cores
 static int udpthreads = 0;
-static int tcpthreads = 0;
+static int tcpthreads = 20;
 
 static bool tree_stats = false;
 static bool json_stats = false;

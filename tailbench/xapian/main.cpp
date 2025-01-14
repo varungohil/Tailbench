@@ -28,7 +28,7 @@ inline void sanityCheckArg(string msg) {
 }
 
 int main(int argc, char* argv[]) {
-    unsigned numServers = 4;
+    unsigned numServers = 20;
     string dbPath = "db";
 
     int c;

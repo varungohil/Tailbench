@@ -32,7 +32,7 @@ extern "C" int mallctl(const char *name, void *oldp, size_t *oldlenp, void *newp
 using namespace std;
 using namespace util;
 
-size_t nthreads = 1;
+size_t nthreads = 20;
 volatile bool running = true;
 int verbose = 0;
 uint64_t txn_flags = 0;

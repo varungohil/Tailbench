@@ -72,7 +72,7 @@ void usage() {
 
 int main(int argc, char *argv[])
 {
-    int nthreads = 1;
+    int nthreads = 20;
 
     int c;
     while((c = getopt(argc, argv, "t:")) != EOF) {

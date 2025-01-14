@@ -180,7 +180,7 @@ main(int argc, char** argv)
 {
     string modelFile = "model.xml";
     int maxReqs = 6000; // Full MNIST test dataset
-    int nThreads = 1;
+    int nThreads = 20;
 
     int c;
     while ((c = getopt(argc, argv, "f:n:r:h")) != -1) {

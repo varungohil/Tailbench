@@ -55,7 +55,7 @@ enum eBindingType { BT_NONE=0, BT_NEXT=1, BT_SPREAD=2 };
 const int DF_SPREAD_THREADS        = 1;
 
 // default number of threads
-const int DF_NUM_OF_THR            = 5;
+const int DF_NUM_OF_THR            = 20;
 
 // maximum number of threads
 const int MAX_NUM_OF_THR           = 1000;

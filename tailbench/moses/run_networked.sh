@@ -3,7 +3,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${DIR}/../configs.sh
 
-THREADS=1
+THREADS=20
 QPS=100
 WARMUPREQS=5000
 MAXREQS=5000
