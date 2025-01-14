@@ -37,6 +37,8 @@ void* send(void* c) {
             std::cerr << "[CLIENT] Not sending further request" << std::endl;
 
             break; // We are done
+        } else {
+            std::cout << "[CLIENT] sent request" << std::endl;
         }
     }
 
@@ -53,7 +55,7 @@ void* recv(void* c) {
                 << std::endl;
             return nullptr;
         }
-
+        std::cout << "[CLIENT] received response" << std::endl; 
         if (resp.type == RESPONSE) {
             client->finiReq(&resp);
         } else if (resp.type == ROI_BEGIN) {
@@ -73,6 +75,10 @@ int main(int argc, char* argv[]) {
     std::string server = getOpt<std::string>("TBENCH_SERVER", "");
     int serverport = getOpt<int>("TBENCH_SERVER_PORT", 8080);
 
+    std::cout << "[CLIENT] TBENCH_CLIENT_THREADS = " << nthreads  << std::endl;
+    std::cout << "[CLIENT] TBENCH_SERVER = " << server << std::endl;
+    std::cout << "[CLIENT] TBENCH_SERVER_PORT = " << serverport << std::endl; 
+
     NetworkedClient* client = new NetworkedClient(nthreads, server, serverport);
 
     std::vector<pthread_t> senders(nthreads);
@@ -89,6 +95,8 @@ int main(int argc, char* argv[]) {
                 reinterpret_cast<void*>(client));
         assert(status == 0);
     }
+
+    std::cout << "[CLIENT] Created all threads" << std::endl; 
 
     for (int t = 0; t < nthreads; ++t) {
         int status;

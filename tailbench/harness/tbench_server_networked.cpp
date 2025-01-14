@@ -323,10 +323,12 @@ void tBenchServerFinish() {
 }
 
 size_t tBenchRecvReq(void** data) {
+    std::cout << "[SERVER] received request" << std::endl; 
     return server->recvReq(tid, data);
 }
 
 void tBenchSendResp(const void* data, size_t size, int64_t feature) {
+    std::cout << "[SERVER] sending response" << std::endl; 
     return server->sendResp(tid, data, size, feature);
 }
 
