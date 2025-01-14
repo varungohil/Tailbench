@@ -39,11 +39,13 @@ Server::~Server() {
 }
 
 void Server::_run() {
+    std::cout << "[SERVER] in _run" << std::endl; 
     pthread_barrier_wait(&barrier);
 
     tBenchServerThreadStart();
 
     while (numReqsProcessed < numReqsToProcess) {
+        std::cout << "[SERVER] in loop" << std::endl; 
        processRequest();
        ++numReqsProcessed;
     }
@@ -82,6 +84,7 @@ void Server::processRequest() {
 }
 
 void* Server::run(void* v) {
+    std::cout << "[SERVER] started thread" << std::endl; 
     Server* server = static_cast<Server*> (v);
     server->_run();
     return NULL;
