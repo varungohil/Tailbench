@@ -18,16 +18,17 @@ class Lat(object):
         f.close()
 
     def parseQueueTimes(self):
-        return self.reqTimes[:, 0]
-
-    def parseSvcTimes(self):
         return self.reqTimes[:, 1]
 
-    def parseSojournTimes(self):
+    def parseSvcTimes(self):
         return self.reqTimes[:, 2]
+
+    def parseSojournTimes(self):
+        return self.reqTimes[:, 3]
     
     def parseFeatures(self):
-        return self.reqTimes[:, 3]
+        return self.reqTimes[:, 0]
+
 
 def draw_pdf(values, nbins):
     clear()
