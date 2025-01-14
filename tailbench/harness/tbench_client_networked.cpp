@@ -38,7 +38,7 @@ void* send(void* c) {
 
             break; // We are done
         } else {
-            std::cout << "[CLIENT] sent request" << std::endl;
+            // std::cout << "[CLIENT] sent request" << std::endl;
         }
     }
 
@@ -55,7 +55,7 @@ void* recv(void* c) {
                 << std::endl;
             return nullptr;
         }
-        std::cout << "[CLIENT] received response" << std::endl; 
+        // std::cout << "[CLIENT] received response" << std::endl; 
         if (resp.type == RESPONSE) {
             client->finiReq(&resp);
         } else if (resp.type == ROI_BEGIN) {
@@ -96,7 +96,7 @@ int main(int argc, char* argv[]) {
         assert(status == 0);
     }
 
-    std::cout << "[CLIENT] Created all threads" << std::endl; 
+    // std::cout << "[CLIENT] Created all threads" << std::endl; 
 
     for (int t = 0; t < nthreads; ++t) {
         int status;

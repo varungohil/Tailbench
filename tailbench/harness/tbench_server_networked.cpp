@@ -48,6 +48,7 @@ NetworkedServer::NetworkedServer(int nthreads, std::string ip, int port, \
         int nclients) 
     : Server(nthreads)
 {
+    // std::cout << "[SERVER] Constructor networked server" << std::endl;
     pthread_mutex_init(&sendLock, nullptr);
     pthread_mutex_init(&recvLock, nullptr);
 
@@ -307,13 +308,18 @@ NetworkedServer* server;
  * API
  *******************************************************************************/
 void tBenchServerInit(int nthreads) {
-    std::cout << "[SERVER] initializing server" << std::endl; 
+    // std::cout << "[SERVER] initializing server" << std::endl; 
     curTid = 0;
     std::string serverurl = getOpt<std::string>("TBENCH_SERVER", "");
     int serverport = getOpt<int>("TBENCH_SERVER_PORT", 8080);
     int nclients = getOpt<int>("TBENCH_NCLIENTS", 1);
+
+    std::cout << "[SERVER] TBENCH_NCLIENTS = " << nclients  << std::endl;
+    std::cout << "[SERVER] TBENCH_SERVER = " << serverurl << std::endl;
+    std::cout << "[SERVER] TBENCH_SERVER_PORT = " << serverport << std::endl; 
+
     server = new NetworkedServer(nthreads, serverurl, serverport, nclients);
-    std::cout << "[SERVER] Done initializing server" << std::endl; 
+    // std::cout << "[SERVER] Done initializing server" << std::endl; 
     
 }
 
@@ -326,12 +332,12 @@ void tBenchServerFinish() {
 }
 
 size_t tBenchRecvReq(void** data) {
-    std::cout << "[SERVER] received request" << std::endl; 
+    // std::cout << "[SERVER] received request" << std::endl; 
     return server->recvReq(tid, data);
 }
 
 void tBenchSendResp(const void* data, size_t size, int64_t feature) {
-    std::cout << "[SERVER] sending response" << std::endl; 
+    // std::cout << "[SERVER] sending response" << std::endl; 
     return server->sendResp(tid, data, size, feature);
 }
 

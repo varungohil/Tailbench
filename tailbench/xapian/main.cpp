@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
     for (unsigned i = 0; i < numServers; i++) {
         servers[i] = new Server(i, dbPath);
     }
-    std::cout << "[SERVER] made server objects" << std::endl; 
+    // std::cout << "[SERVER] made server objects" << std::endl; 
 
     pthread_t* threads = NULL;
     if (numServers > 1) {
