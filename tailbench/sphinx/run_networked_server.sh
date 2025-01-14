@@ -13,5 +13,5 @@ LD_LIBRARY_PATH=./sphinx-install/lib:${LD_LIBRARY_PATH} \
     TBENCH_WARMUPREQS=${WARMUPREQS} \
     TBENCH_SERVER=10.0.1.1 \
     TBENCH_SERVER_PORT=12345 \
-    TBRNCH_NCLIENTS=1 \
+    TBRNCH_NCLIENTS=20 \
     ./decoder_server_networked -t $THREADS
