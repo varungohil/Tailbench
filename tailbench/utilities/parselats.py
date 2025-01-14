@@ -28,6 +28,10 @@ class Lat(object):
     
     def parseFeatures(self):
         return self.reqTimes[:, 0]
+    
+    def convert_to_csv(self):
+        df = pd.DataFrame(self.reqTimes, columns=["features", "queueTime", "serviceTime", "sojournTime"])
+        df.to_csv("lats.csv")
 
 
 def draw_pdf(values, nbins):
