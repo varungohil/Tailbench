@@ -47,6 +47,6 @@ def clear():
     plt.close()
 
 if __name__ == '__main__':
-    latsObj = Lat("lats.bin")
+    latsObj = Lat(sys.argv[1])
     latsObj.convert_to_csv()
 

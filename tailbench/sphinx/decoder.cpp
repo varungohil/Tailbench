@@ -26,14 +26,18 @@ void doAsr() {
     int16* buf = nullptr;
     int rv;
     int32 score;
+    std::cout << "in doAsr()" << std::endl;
 
     config = cmd_ln_init(NULL, ps_args(), TRUE,
                  "-hmm", "/users/varuncg/Tailbench/tailbench/sphinx/sphinx-install/share/pocketsphinx/model/en-us/en-us",
                  "-lm", "/users/varuncg/Tailbench/tailbench/sphinx/sphinx-install/share/pocketsphinx/model/en-us/en-us.lm.bin",
                  "-dict", "/users/varuncg/Tailbench/tailbench/sphinx/sphinx-install/share/pocketsphinx/model/en-us/cmudict-en-us.dict",
                  NULL);
+    std::cout << "got config" << std::endl;
     if (config == NULL) throw AsrException("Could not init config");
+    std::cout << "calling ps_init()" << std::endl;
     ps = ps_init(config);
+    std::cout << "done with ps_init()" << std::endl;
     if (ps == NULL) throw AsrException("Could not init pocketsphinx");
 
     while (true) {
