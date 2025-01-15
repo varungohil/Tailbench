@@ -237,6 +237,7 @@ bool NetworkedClient::recv(Response* resp) {
     int len = sizeof(Response) - MAX_RESP_BYTES; // Read request header first
     int recvd = recvfull(serverFd, reinterpret_cast<char*>(resp), len, 0);
     if (recvd != len) {
+        std::cerr << "recv condition 1 failed" << std::endl;
         error = strerror(errno);
         return false;
     }
@@ -246,6 +247,7 @@ bool NetworkedClient::recv(Response* resp) {
                 resp->len, 0);
 
         if (static_cast<size_t>(recvd) != resp->len) {
+            std::cerr << "recv condition 2 failed" << std::endl;
             error = strerror(errno);
             return false;
         }
