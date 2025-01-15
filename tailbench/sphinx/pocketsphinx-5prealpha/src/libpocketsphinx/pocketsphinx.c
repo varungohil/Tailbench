@@ -413,6 +413,7 @@ ps_init(cmd_ln_t *config)
     ps = ckd_calloc(1, sizeof(*ps));
     ps->refcount = 1;
     if (ps_reinit(ps, config) < 0) {
+        std::cout << "[SERVER] Reinit < 0" << std::endl;
         ps_free(ps);
         return NULL;
     }
