@@ -77,6 +77,7 @@ void usage() {
 int main(int argc, char *argv[])
 {
     int nthreads = 20;
+    std::cout << "in main()" << std::endl;
 
     int c;
     while((c = getopt(argc, argv, "t:")) != EOF) {
@@ -93,9 +94,11 @@ int main(int argc, char *argv[])
 
     std::vector<std::thread> threads;
 
+    std::cout << "tBenchServerInit" << std::endl;
     tBenchServerInit(nthreads);
 
     for (int i = 0; i < nthreads; i++)
+        std::cout << "creating thread" << std::endl;
         threads.push_back(std::thread(doAsr));
 
     // never reached
