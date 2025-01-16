@@ -1392,11 +1392,11 @@ tpcc_worker::txn_new_order()
 
     measure_txn_counters(txn, "txn_new_order");
     if (likely(db->commit_txn(txn)))
-      return txn_result(true, ret);
+      return txn_result(true, numItems);
   } catch (abstract_db::abstract_abort_exception &ex) {
     db->abort_txn(txn);
   }
-  return txn_result(false, 0);
+  return txn_result(false, numItems);
 }
 
 class new_order_scan_callback : public abstract_ordered_index::scan_callback {
