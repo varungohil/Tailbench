@@ -19,12 +19,4 @@ TBENCH_QPS=1 \
     TBENCH_SERVER_PORT=12345 \
     TBENCH_AN4_CORPUS=${DATA_ROOT}/sphinx \
     TBENCH_AUDIO_SAMPLES=${AUDIO_SAMPLES} \
-    ./decoder_client_networked &
-
-echo $! > client.pid
-
-wait $(cat client.pid)
-
-# Cleanup
-./kill_networked.sh
-rm server.pid client.pid 
+    ./decoder_client_networked

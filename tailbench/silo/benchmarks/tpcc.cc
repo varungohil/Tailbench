@@ -1949,11 +1949,11 @@ tpcc_worker::txn_stock_level()
     }
     measure_txn_counters(txn, "txn_stock_level");
     if (likely(db->commit_txn(txn)))
-      return txn_result(true, 0);
+      return txn_result(true, c.s_i_ids.size());
   } catch (abstract_db::abstract_abort_exception &ex) {
     db->abort_txn(txn);
   }
-  return txn_result(false, 0);
+  return txn_result(false, c.s_i_ids.size());
 }
 
 template <typename T>

@@ -412,7 +412,7 @@ public:
     VERBOSE(1, "Line " << m_lineNumber << ": Translation took " << translationTime << " seconds total" << endl);
 
     std::string translation = "Hello World";
-    tBenchSendResp(reinterpret_cast<const void*>(translation.c_str()), translation.size() + 1, wordCount);
+    tBenchSendResp(reinterpret_cast<const void*>(translation.c_str()), translation.size() + 1, wordCount, 0, 0);
   }
 
   ~TranslationTask() {

@@ -63,7 +63,7 @@ void doAsr() {
         hyp = ps_get_hyp(ps, &score);
         if (hyp == NULL) AsrException("Could not get hypothesis");
 
-        tBenchSendResp(reinterpret_cast<const void*>(hyp), strlen(hyp), len);
+        tBenchSendResp(reinterpret_cast<const void*>(hyp), strlen(hyp), len, 0, 0);
     }
 
     ps_free(ps);

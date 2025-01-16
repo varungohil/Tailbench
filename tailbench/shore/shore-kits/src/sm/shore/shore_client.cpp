@@ -159,7 +159,7 @@ w_rc_t base_client_t::run_xcts(int xct_type, int num_xct)
             // already have hit an assert earlier. If we got here, we succeeded.
             resp.status = Success; 
 
-            tBenchSendResp(reinterpret_cast<const void*>(&resp), sizeof(resp), req->xctType);
+            tBenchSendResp(reinterpret_cast<const void*>(&resp), sizeof(resp), req->xctType, 0, 0);
         }
 
         break;

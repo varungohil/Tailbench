@@ -125,6 +125,7 @@ bench_worker::run()
   barrier_b->wait_for();
 
   tBenchServerThreadStart();
+  bool rollback = false;
 
   while (running && (run_mode != RUNMODE_OPS || ntxn_commits < ops_per_worker)) {
     Request* req;
@@ -139,8 +140,9 @@ retry:
         latency_numer_us += t.lap();
         backoff_shifts >>= 1;
         resp.success = true;
-        tBenchSendResp(&resp, sizeof(resp), req->type);
+        tBenchSendResp(&resp, sizeof(resp), req->type, ret.second, rollback);
     } else {
+        rollback = true;
         ++ntxn_aborts;
         if (retry_aborted_transaction && running) {
             if (backoff_aborted_transaction) {

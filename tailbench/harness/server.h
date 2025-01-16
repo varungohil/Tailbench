@@ -50,7 +50,7 @@ class Server {
         }
 
         virtual size_t recvReq(int id, void** data) = 0;
-        virtual void sendResp(int id, const void* data, size_t size, int64_t feature) = 0;
+        virtual void sendResp(int id, const void* data, size_t size, int32_t feature1, int32_t feature2, int32_t feature3 ) = 0;
 };
 
 class IntegratedServer : public Server, public Client {
@@ -58,7 +58,7 @@ class IntegratedServer : public Server, public Client {
         IntegratedServer(int nthreads);
 
         size_t recvReq(int id, void** data);
-        void sendResp(int id, const void* data, size_t size, int64_t feature);
+        void sendResp(int id, const void* data, size_t size, int32_t feature1, int32_t feature2, int32_t feature3);
 };
 
 class NetworkedServer : public Server {
@@ -88,7 +88,7 @@ class NetworkedServer : public Server {
         ~NetworkedServer();
 
         size_t recvReq(int id, void** data);
-        void sendResp(int id, const void* data, size_t size, int64_t feature);
+        void sendResp(int id, const void* data, size_t size, int32_t feature1,  int32_t feature2,  int32_t feature3);
         void finish();
 };
 

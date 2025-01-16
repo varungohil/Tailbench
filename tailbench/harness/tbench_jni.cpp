@@ -52,11 +52,11 @@ JNIEXPORT jbyteArray JNICALL Java_tbench_tbench_tBenchRecvReq(JNIEnv* env,
 }
 
 JNIEXPORT void JNICALL Java_tbench_tbench_tBenchSendResp(JNIEnv* env, 
-        jclass cls, jbyteArray arr, jint size, jint feature) {
+        jclass cls, jbyteArray arr, jint size, jint feature1, jint feature2, jint feature3) {
     jsize len = env->GetArrayLength(arr);
     jbyte* bytes = env->GetByteArrayElements(arr, nullptr);
 
-    tBenchSendResp(reinterpret_cast<const void*>(bytes), len * sizeof(jbyte), feature);
+    tBenchSendResp(reinterpret_cast<const void*>(bytes), len * sizeof(jbyte), feature1, feature2, faeture3);
 
     env->ReleaseByteArrayElements(arr, bytes, 0);
 }

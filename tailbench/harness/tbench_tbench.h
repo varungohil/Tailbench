@@ -45,7 +45,7 @@ JNIEXPORT jbyteArray JNICALL Java_tbench_tbench_tBenchRecvReq
  * Signature: ([BI)V
  */
 JNIEXPORT void JNICALL Java_tbench_tbench_tBenchSendResp
-  (JNIEnv *, jclass, jbyteArray, jint);
+  (JNIEnv *, jclass, jbyteArray, jint, jint, jint, jint);
 
 #ifdef __cplusplus
 }

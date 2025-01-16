@@ -233,7 +233,7 @@ size_t NetworkedServer::recvReq(int id, void** data) {
     return req->len;
 };
 
-void NetworkedServer::sendResp(int id, const void* data, size_t len, int64_t feature) {
+void NetworkedServer::sendResp(int id, const void* data, size_t len, int32_t feature1, int32_t feature2, int32_t feature3) {
     pthread_mutex_lock(&sendLock);
 
     Response* resp = new Response();
@@ -241,7 +241,9 @@ void NetworkedServer::sendResp(int id, const void* data, size_t len, int64_t fea
     resp->type = RESPONSE;
     resp->id = reqInfo[id].id;
     resp->len = len;
-    resp->feature = feature;
+    resp->feature1 = feature1;
+    resp->feature2 = feature2;
+    resp->feature3 = feature3;
     memcpy(reinterpret_cast<void*>(&resp->data), data, len);
 
     uint64_t curNs = getCurNs();
@@ -336,8 +338,8 @@ size_t tBenchRecvReq(void** data) {
     return server->recvReq(tid, data);
 }
 
-void tBenchSendResp(const void* data, size_t size, int64_t feature) {
+void tBenchSendResp(const void* data, size_t size, int32_t feature1, int32_t feature2, int32_t feature3) {
     // std::cout << "[SERVER] sending response" << std::endl; 
-    return server->sendResp(tid, data, size, feature);
+    return server->sendResp(tid, data, size, feature1, feature2, feature3);
 }
 

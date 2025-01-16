@@ -80,7 +80,7 @@ void Server::processRequest() {
         if (++doccount == MAX_DOC_COUNT) break;
     }
 
-    tBenchSendResp(reinterpret_cast<void*>(res), resLen, mset.size());
+    tBenchSendResp(reinterpret_cast<void*>(res), resLen, mset.size(), 0, 0);
 }
 
 void* Server::run(void* v) {
