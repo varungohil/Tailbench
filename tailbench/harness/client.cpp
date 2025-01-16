@@ -120,7 +120,9 @@ void Client::finiReq(Response* resp) {
         queueTimes.push_back(qtime);
         svcTimes.push_back(resp->svcNs);
         sjrnTimes.push_back(sjrn);
-        features.push_back(resp->feature);
+        feature1s.push_back(resp->feature1);
+        feature2s.push_back(resp->feature2);
+        feature3s.push_back(resp->feature3);
     }
 
     delete req;
@@ -139,7 +141,9 @@ void Client::_startRoi() {
     queueTimes.clear();
     svcTimes.clear();
     sjrnTimes.clear();
-    features.clear();
+    feature1s.clear();
+    feature2s.clear();
+    feature3s.clear();
 }
 
 void Client::startRoi() {
@@ -153,8 +157,12 @@ void Client::dumpStats() {
     int reqs = sjrnTimes.size();
 
     for (int r = 0; r < reqs; ++r) {
-        out.write(reinterpret_cast<const char*>(&features[r]), 
-                    sizeof(features[r]));
+        out.write(reinterpret_cast<const char*>(&feature1s[r]), 
+                    sizeof(feature1s[r]));
+        out.write(reinterpret_cast<const char*>(&feature1s[r]), 
+                    sizeof(feature2s[r]));
+        out.write(reinterpret_cast<const char*>(&feature1s[r]), 
+                    sizeof(feature3s[r]));
         out.write(reinterpret_cast<const char*>(&queueTimes[r]), 
                     sizeof(queueTimes[r]));
         out.write(reinterpret_cast<const char*>(&svcTimes[r]), 

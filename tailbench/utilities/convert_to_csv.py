@@ -18,19 +18,25 @@ class Lat(object):
         f.close()
 
     def parseQueueTimes(self):
-        return self.reqTimes[:, 1]
+        return self.reqTimes[:, 3]
 
     def parseSvcTimes(self):
-        return self.reqTimes[:, 2]
+        return self.reqTimes[:, 4]
 
     def parseSojournTimes(self):
-        return self.reqTimes[:, 3]
+        return self.reqTimes[:, 5]
     
-    def parseFeatures(self):
+    def parseFeature1s(self):
         return self.reqTimes[:, 0]
     
+    def parseFeature2s(self):
+        return self.reqTimes[:, 1]
+    
+    def parseFeature3s(self):
+        return self.reqTimes[:, 2]
+    
     def convert_to_csv(self):
-        df = pd.DataFrame(self.reqTimes, columns=["features", "queueTime", "serviceTime", "sojournTime"])
+        df = pd.DataFrame(self.reqTimes, columns=["feature1s", "feature2s", "feature3s", "queueTime", "serviceTime", "sojournTime"])
         df.to_csv("lats.csv")
 
 
