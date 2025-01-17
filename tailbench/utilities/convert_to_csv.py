@@ -14,7 +14,7 @@ class Lat(object):
     def __init__(self, fileName):
         f = open(fileName, 'rb')
         a = np.fromfile(f, dtype=np.uint64)
-        self.reqTimes = a.reshape((int(a.shape[0]/4), 4))
+        self.reqTimes = a.reshape((int(a.shape[0]/6), 6))
         f.close()
 
     def parseQueueTimes(self):
