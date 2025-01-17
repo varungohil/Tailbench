@@ -88,6 +88,7 @@ class TranslationTask : public Task
 
 public:
 
+
   TranslationTask(size_t lineNumber,
                   InputType* source, OutputCollector* outputCollector, OutputCollector* nbestCollector,
                   OutputCollector* latticeSamplesCollector,
@@ -107,6 +108,24 @@ public:
     m_outputSearchGraphSLF(outputSearchGraphSLF),
     m_outputSearchGraphHypergraph(outputSearchGraphHypergraph) {}
 
+
+size_t countWords(const char* sentencePtr) {
+    if (sentencePtr == nullptr) {
+        return 0; // Handle null pointer case
+    }
+
+    std::string sentence(sentencePtr); // Convert char* to std::string
+    std::istringstream stream(sentence);
+    std::string word;
+    size_t count = 0;
+
+    while (stream >> word) {
+        count++;
+    }
+
+    return count;
+}
+
 	/** Translate one sentence
    * gets called by main function implemented at end of this source file */
   void Run() {
@@ -120,7 +139,7 @@ public:
     // m_linenumber here seems to require some pretty major surgery
     char* sentencePtr;
     size_t len = tBenchRecvReq(reinterpret_cast<void**>(&sentencePtr));
-    int64_t wordCount = countWords(sentencePtr);
+    int32_t wordCount = countWords(sentencePtr);
 
     Timer translationTime;
     translationTime.start();
@@ -542,22 +561,7 @@ void OutputFeatureWeightsForHypergraph(std::ostream &outputSearchGraphStream)
 
 }
 
-size_t countWords(const char* sentencePtr) {
-    if (sentencePtr == nullptr) {
-        return 0; // Handle null pointer case
-    }
 
-    std::string sentence(sentencePtr); // Convert char* to std::string
-    std::istringstream stream(sentence);
-    std::string word;
-    size_t count = 0;
-
-    while (stream >> word) {
-        count++;
-    }
-
-    return count;
-}
 
 } //namespace
 
