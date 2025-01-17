@@ -1904,6 +1904,7 @@ tpcc_worker::txn_stock_level()
   scoped_str_arena s_arena(arena);
   // NB: since txn_stock_level() is a RO txn, we assume that
   // locking is un-necessary (since we can just read from some old snapshot)
+  int32_t cids_size = 0;
   try {
     const district::key k_d(warehouse_id, districtID);
     ALWAYS_ASSERT(tbl_district(warehouse_id)->get(txn, Encode(obj_key0, k_d), obj_v));
@@ -1948,12 +1949,13 @@ tpcc_worker::txn_stock_level()
       // NB(stephentu): s_i_ids_distinct.size() is the computed result of this txn
     }
     measure_txn_counters(txn, "txn_stock_level");
+    cids_size =  c.s_i_ids.size();
     if (likely(db->commit_txn(txn)))
       return txn_result(true, c.s_i_ids.size());
   } catch (abstract_db::abstract_abort_exception &ex) {
     db->abort_txn(txn);
   }
-  return txn_result(false, c.s_i_ids.size());
+  return txn_result(false, cids_size);
 }
 
 template <typename T>
