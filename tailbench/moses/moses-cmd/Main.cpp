@@ -110,7 +110,7 @@ public:
 
 
 size_t countWords(const char* sentencePtr) {
-    if (sentencePtr == nullptr) {
+    if (sentencePtr == NULL) {
         return 0; // Handle null pointer case
     }
 
