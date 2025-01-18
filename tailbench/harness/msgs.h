@@ -37,9 +37,9 @@ struct Response {
     uint64_t id;
     uint64_t svcNs;
     size_t len;
-    int32_t feature1;
-    int32_t feature2;
-    int32_t feature3;
+    uint64_t feature1;
+    uint64_t feature2;
+    uint64_t feature3;
     char data[MAX_RESP_BYTES];
 };
 
