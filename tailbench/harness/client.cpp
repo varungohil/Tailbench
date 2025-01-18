@@ -159,9 +159,9 @@ void Client::dumpStats() {
     for (int r = 0; r < reqs; ++r) {
         out.write(reinterpret_cast<const char*>(&feature1s[r]), 
                     sizeof(feature1s[r]));
-        out.write(reinterpret_cast<const char*>(&feature1s[r]), 
+        out.write(reinterpret_cast<const char*>(&feature2s[r]), 
                     sizeof(feature2s[r]));
-        out.write(reinterpret_cast<const char*>(&feature1s[r]), 
+        out.write(reinterpret_cast<const char*>(&feature3s[r]), 
                     sizeof(feature3s[r]));
         out.write(reinterpret_cast<const char*>(&queueTimes[r]), 
                     sizeof(queueTimes[r]));
