@@ -18,6 +18,7 @@
 #define __TBENCH_SERVER_H
 
 #include <stdlib.h>
+#include <stdint.h> 
 
 #ifdef __cplusplus 
 extern "C" {
