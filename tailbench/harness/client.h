@@ -49,9 +49,9 @@ class Client {
         std::vector<uint64_t> svcTimes;
         std::vector<uint64_t> queueTimes;
         std::vector<uint64_t> sjrnTimes;
-        std::vector<int32_t> feature1s;
-        std::vector<int32_t> feature2s;
-        std::vector<int32_t> feature3s;
+        std::vector<uint64_t> feature1s;
+        std::vector<uint64_t> feature2s;
+        std::vector<uint64_t> feature3s;
 
         void _startRoi();
 

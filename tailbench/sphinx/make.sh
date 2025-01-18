@@ -1,3 +1,3 @@
-export PKG_CONFIG_PATH=./sphinx-install/lib/pkgconfig && g++ client.o decoder.o ../harness/tbench_server_integrated.o ../harness/client.o -o decoder_integrated `pkg-config --cflags --libs pocketsphinx sphinxbase` -lpthread -lrt
-export PKG_CONFIG_PATH=./sphinx-install/lib/pkgconfig && g++ decoder.o ../harness/tbench_server_networked.o -o decoder_server_networked `pkg-config --cflags --libs pocketsphinx sphinxbase` -lpthread -lrt
-export PKG_CONFIG_PATH=./sphinx-install/lib/pkgconfig && g++ client.o  ../harness/client.o  ../harness/tbench_client_networked.o -o decoder_client_networked `pkg-config --cflags --libs pocketsphinx sphinxbase` -lpthread -lrt
+export PKG_CONFIG_PATH=./sphinx-install/lib/pkgconfig && sudo g++ client.o decoder.o ../harness/tbench_server_integrated.o ../harness/client.o -o decoder_integrated `pkg-config --cflags --libs pocketsphinx sphinxbase` -lpthread -lrt
+export PKG_CONFIG_PATH=./sphinx-install/lib/pkgconfig && sudo g++ decoder.o ../harness/tbench_server_networked.o -o decoder_server_networked `pkg-config --cflags --libs pocketsphinx sphinxbase` -lpthread -lrt
+export PKG_CONFIG_PATH=./sphinx-install/lib/pkgconfig && sudo g++ client.o  ../harness/client.o  ../harness/tbench_client_networked.o -o decoder_client_networked `pkg-config --cflags --libs pocketsphinx sphinxbase` -lpthread -lrt
