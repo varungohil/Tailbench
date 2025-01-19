@@ -11,10 +11,11 @@ NSERVERS=20
 WARMUPREQS=2500
 MAXREQS=5000
 
-TBENCH_MAXREQS=${MAXREQS} \
-    TBENCH_WARMUPREQS=${WARMUPREQS} \
-    TBENCH_SERVER=10.0.1.1 \
-    TBENCH_SERVER_PORT=12345 \
-    TBENCH_NCLIENTS=1 \
-    ./xapian_networked_server -n ${NSERVERS} -d ${DATA_ROOT}/xapian/wiki \
-    -r 1000000000 
+# Export environment variables first
+export TBENCH_MAXREQS=${MAXREQS}
+export TBENCH_WARMUPREQS=${WARMUPREQS}
+export TBENCH_SERVER=10.0.1.1
+export TBENCH_SERVER_PORT=12345
+export TBENCH_NCLIENTS=1
+
+chrt -f 99  ./xapian_networked_server -n ${NSERVERS} -d ${DATA_ROOT}/xapian/wiki -r 1000000000 

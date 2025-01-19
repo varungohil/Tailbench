@@ -14,12 +14,13 @@ cp moses.ini.template moses.ini
 sed -i -e "s#@DATA_ROOT#$DATA_ROOT#g" moses.ini
 
 # Launch Server
-TBENCH_MAXREQS=${MAXREQS} \
-    TBENCH_WARMUPREQS=${WARMUPREQS} \
-    TBENCH_WARMUPREQS=${WARMUPREQS} \
-    TBENCH_SERVER=10.0.1.1 \
-    TBENCH_SERVER_PORT=12345 \
-    TBENCH_NCLIENTS=1 \
-    ${BINDIR}/moses_server_networked -config ./moses.ini \
+export TBENCH_MAXREQS=${MAXREQS}
+export TBENCH_WARMUPREQS=${WARMUPREQS}
+export TBENCH_WARMUPREQS=${WARMUPREQS}
+export TBENCH_SERVER=10.0.1.1
+export TBENCH_SERVER_PORT=12345
+export TBENCH_NCLIENTS=1
+
+chrt -f 99 ${BINDIR}/moses_server_networked -config ./moses.ini \
     -input-file ${DATA_ROOT}/moses/testTerms \
     -threads ${THREADS} -num-tasks 1000000 -verbose 0

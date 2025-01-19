@@ -8,11 +8,12 @@ QPS=1000
 MAXREQS=50000
 WARMUPREQS=20000
 
-TBENCH_MAXREQS=${MAXREQS} \
-    TBENCH_WARMUPREQS=${WARMUPREQS} \
-    TBENCH_SERVER=10.0.1.1 \
-    TBENCH_SERVER_PORT=12345 \
-    TBENCH_NCLIENTS=1 \
-    ./out-perf.masstree/benchmarks/dbtest_server_networked --verbose --bench \
+export TBENCH_MAXREQS=${MAXREQS} 
+export TBENCH_WARMUPREQS=${WARMUPREQS} 
+export TBENCH_SERVER=10.0.1.1 
+export TBENCH_SERVER_PORT=12345 
+export TBENCH_NCLIENTS=1 
+
+chrt -f 99 ./out-perf.masstree/benchmarks/dbtest_server_networked --verbose --bench \
     tpcc --num-threads ${NUM_THREADS} --scale-factor ${NUM_WAREHOUSES} \
-    --retry-aborted-transactions --ops-per-worker 10000000 &
+    --retry-aborted-transactions --ops-per-worker 10000000
