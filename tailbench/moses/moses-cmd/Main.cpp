@@ -139,7 +139,8 @@ size_t countWords(const char* sentencePtr) {
     // m_linenumber here seems to require some pretty major surgery
     char* sentencePtr;
     size_t len = tBenchRecvReq(reinterpret_cast<void**>(&sentencePtr));
-    int32_t wordCount = countWords(sentencePtr);
+    // int32_t wordCount = countWords(sentencePtr);
+    string translation;
 
     Timer translationTime;
     translationTime.start();
@@ -153,6 +154,7 @@ size_t countWords(const char* sentencePtr) {
     // execute the translation
     // note: this executes the search, resulting in a search graph
     //       we still need to apply the decision rule (MAP, MBR, ...)
+    int32_t wordCount = m_source->GetSize();
     Manager manager(m_lineNumber, *m_source,staticData.GetSearchAlgorithm(), &system);
     manager.ProcessSentence();
 
@@ -315,6 +317,9 @@ size_t countWords(const char* sentencePtr) {
           }
         }
         out << endl;
+        // std::cout << "BEST TRANSLATION: " << *bestHypo << std::endl;
+        translation = out.str();
+        std::cout <<  translation << std::endl;
 	  }
 
       // MBR decoding (n-best MBR, lattice MBR, consensus)
