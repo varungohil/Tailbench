@@ -140,7 +140,7 @@ size_t countWords(const char* sentencePtr) {
     char* sentencePtr;
     size_t len = tBenchRecvReq(reinterpret_cast<void**>(&sentencePtr));
     // int32_t wordCount = countWords(sentencePtr);
-    string translation;
+    // string translation;
 
     Timer translationTime;
     translationTime.start();
@@ -318,8 +318,8 @@ size_t countWords(const char* sentencePtr) {
         }
         out << endl;
         // std::cout << "BEST TRANSLATION: " << *bestHypo << std::endl;
-        translation = out.str();
-        std::cout <<  translation << std::endl;
+        // translation = out.str();
+        // std::cout <<  translation << std::endl;
 	  }
 
       // MBR decoding (n-best MBR, lattice MBR, consensus)
