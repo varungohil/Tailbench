@@ -37,7 +37,7 @@ class Lat(object):
     
     def convert_to_csv(self):
         df = pd.DataFrame(self.reqTimes, columns=["feature1s", "feature2s", "feature3s", "queueTime", "serviceTime", "sojournTime"])
-        df.to_csv("lats.csv")
+        df.to_csv("lats.csv", index=False)
 
 
 def draw_pdf(values, nbins):
