@@ -8,7 +8,7 @@
 #include <string>
 #include <thread>
 #include <vector>
-
+#include <pthread.h>
 #include "internal.h"
 #include "tbench_server.h"
 #include <pocketsphinx.h>
@@ -97,9 +97,24 @@ int main(int argc, char *argv[])
     std::cout << "tBenchServerInit" << std::endl;
     tBenchServerInit(nthreads);
 
-    for (int i = 0; i < nthreads; i++)
-        std::cout << "creating thread" << std::endl;
-        threads.push_back(std::thread(doAsr));
+    for (int i = 0; i < nthreads; i++) {
+        std::cout << "creating thread " << i << std::endl;
+        threads.push_back(std::thread([i]() {
+            // Create CPU set for thread affinity
+            cpu_set_t cpuset;
+            CPU_ZERO(&cpuset);
+            CPU_SET(i, &cpuset);
+            
+            // Pin the current thread to core i
+            int rc = pthread_setaffinity_np(pthread_self(),
+                                          sizeof(cpu_set_t), &cpuset);
+            if (rc != 0) {
+                std::cerr << "Error calling pthread_setaffinity_np: " << rc << std::endl;
+            }
+            
+            doAsr();
+        }));
+    }
 
     // never reached
     for (auto& th : threads) th.join();

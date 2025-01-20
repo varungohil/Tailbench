@@ -3,6 +3,8 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
+#include <sched.h>
+#include <sys/types.h>
 #include "server.h"
 #include "tbench_server.h"
 
@@ -71,9 +73,21 @@ int main(int argc, char* argv[]) {
         threads = new pthread_t [numServers - 1];
         for (unsigned i = 0; i < numServers - 1; i++) {
             pthread_create(&threads[i], NULL, Server::run, servers[i]);
+            cpu_set_t cpuset;
+            CPU_ZERO(&cpuset);
+            CPU_SET(i + 1, &cpuset);
+            int rc = pthread_setaffinity_np(threads[i], sizeof(cpu_set_t), &cpuset);
+            if (rc != 0) {
+                cerr << "Error calling pthread_setaffinity_np: " << rc << endl;
+            }
         }
     }
-    
+
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    CPU_SET(0, &cpuset);
+    pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);    
+
     Server::run(servers[numServers - 1]);
 
     if (numServers > 1) {

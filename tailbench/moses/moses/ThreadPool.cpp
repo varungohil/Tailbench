@@ -35,7 +35,13 @@ ThreadPool::ThreadPool( size_t numThreads )
   , m_queueLimit(0), m_numWarmedUpThreads(0)
 {
   for (size_t i = 0; i < numThreads; ++i) {
-    m_threads.create_thread(boost::bind(&ThreadPool::Execute,this));
+    boost::thread* thread = m_threads.create_thread(boost::bind(&ThreadPool::Execute,this));
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    CPU_SET(i, &cpuset);
+    pthread_setaffinity_np(thread->native_handle(), 
+                          sizeof(cpu_set_t), 
+                          &cpuset);
   }
 }
 
