@@ -13,6 +13,10 @@
 #include "tbench_server.h"
 #include <pocketsphinx.h>
 #include <err.h>
+#include <barrier>
+
+// Add these global variables at the top of the file, after the includes
+std::barrier<> *init_barrier = nullptr;
 
 void doAsr() {
     tBenchServerThreadStart();
@@ -39,6 +43,9 @@ void doAsr() {
     ps = ps_init(config);
     std::cout << "done with ps_init()" << std::endl;
     if (ps == NULL) throw AsrException("Could not init pocketsphinx");
+
+    // Wait for all threads to complete initialization
+    init_barrier->arrive_and_wait();
 
     while (true) {
         size_t len = tBenchRecvReq(reinterpret_cast<void**>(&buf));
@@ -97,6 +104,9 @@ int main(int argc, char *argv[])
     std::cout << "tBenchServerInit" << std::endl;
     tBenchServerInit(nthreads);
 
+    // Initialize the barrier before creating threads
+    init_barrier = new std::barrier<>(nthreads);
+
     for (int i = 0; i < nthreads; i++) {
         std::cout << "creating thread " << i << std::endl;
         threads.push_back(std::thread([i]() {
@@ -120,6 +130,9 @@ int main(int argc, char *argv[])
     for (auto& th : threads) th.join();
 
     tBenchServerFinish();
+
+    // Clean up barrier (though this code is never reached)
+    delete init_barrier;
 
     return 0;
 }
