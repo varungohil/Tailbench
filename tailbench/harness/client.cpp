@@ -230,6 +230,7 @@ bool NetworkedClient::send(Request* req) {
 
     int len = sizeof(Request) - MAX_REQ_BYTES + req->len;
     int sent = sendfull(serverFd, reinterpret_cast<const char*>(req), len, 0);
+    std::cout << "sent = " << sent << std::endl;
     if (sent != len) {
         error = strerror(errno);
     }
