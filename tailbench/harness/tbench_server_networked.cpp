@@ -206,13 +206,14 @@ size_t NetworkedServer::recvReq(int id, void** data) {
 
         req = &reqbuf[id];
         int recvd = recvfull(fd, reinterpret_cast<char*>(req), len, 0);
+        std::cout << "recvd 1 = " << recvd << std::endl;
 
         std::cout << "checkRecv 1" << std::endl;
         success = checkRecv(recvd, len, fd);
         if (!success) continue;
         
         recvd = recvfull(fd, req->data, req->len, 0);
-        std::cout << "recvd = " << recvd << std::endl;
+        std::cout << "recvd 2 = " << recvd << std::endl;
         std::cout << "checkRecv 2" << std::endl;
         success = checkRecv(recvd, req->len, fd);
         if (!success) continue;
